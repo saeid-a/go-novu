@@ -5,7 +5,6 @@ go 1.19
 require (
 	github.com/google/uuid v1.3.1
 	github.com/hashicorp/go-retryablehttp v0.7.4
-	github.com/novuhq/go-novu v0.1.2
 	github.com/pkg/errors v0.9.1
 	github.com/stretchr/testify v1.7.5
 )

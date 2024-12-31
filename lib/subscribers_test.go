@@ -416,10 +416,8 @@ func TestSubscriberService_UpdatePreferences_Success(t *testing.T) {
 	var opts *lib.UpdateSubscriberPreferencesOptions = &lib.UpdateSubscriberPreferencesOptions{
 		Enabled: &enabled,
 		Channel: &lib.UpdateSubscriberPreferencesChannel{
-			{
 				Type:    "email",
 				Enabled: true,
-			},
 		},
 	}
 	httpServer := createTestServer(t, TestServerOptions[*lib.UpdateSubscriberPreferencesOptions, *lib.SubscriberPreferencesResponse]{
