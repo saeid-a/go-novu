@@ -6,7 +6,7 @@ import (
 	"net/http/httptest"
 	"testing"
 
-	"github.com/novuhq/go-novu/lib"
+	"github.com/saeid-a/go-novu/lib"
 )
 
 var tenantsApiResponse = `{
