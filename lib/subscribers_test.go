@@ -414,12 +414,10 @@ func TestSubscriberService_UpdatePreferences_Success(t *testing.T) {
 	fileToStruct(filepath.Join("../testdata", "subscriber_preferences_response.json"), &expectedResponse)
 
 	var opts *lib.UpdateSubscriberPreferencesOptions = &lib.UpdateSubscriberPreferencesOptions{
-		Enabled: true,
-		Channel: []lib.UpdateSubscriberPreferencesChannel{
-			{
-				Type:    "email",
-				Enabled: true,
-			},
+		Enabled: &enabled,
+		Channel: &lib.UpdateSubscriberPreferencesChannel{
+			Type:    "email",
+			Enabled: true,
 		},
 	}
 	httpServer := createTestServer(t, TestServerOptions[*lib.UpdateSubscriberPreferencesOptions, *lib.SubscriberPreferencesResponse]{
