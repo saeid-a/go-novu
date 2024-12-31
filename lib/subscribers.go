@@ -235,7 +235,7 @@ func (s *SubscriberService) GetUnseenCount(ctx context.Context, subscriberID str
 }
 
 func (s *SubscriberService) UpdatePreferences(ctx context.Context, subscriberID string, templateId string, opts *UpdateSubscriberPreferencesOptions) (*UpdateSubscriberPreferencesResponse, error) {
-	var resp UpdateSubscriberPreferencesRespons
+	var resp UpdateSubscriberPreferencesResponse
 	URL := s.client.config.BackendURL.JoinPath("subscribers", subscriberID, "preferences", templateId)
 
 	var reqBody io.Reader = http.NoBody
