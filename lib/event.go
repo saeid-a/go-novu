@@ -27,6 +27,7 @@ func (e *EventService) Trigger(ctx context.Context, eventId string, data ITrigge
 		Overrides:     data.Overrides,
 		TransactionId: data.TransactionId,
 		Actor:         data.Actor,
+		Tenant:        data.Tenant,
 	}
 
 	jsonBody, _ := json.Marshal(reqBody)

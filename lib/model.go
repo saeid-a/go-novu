@@ -53,6 +53,7 @@ type ITriggerPayloadOptions struct {
 	Overrides     interface{} `json:"overrides,omitempty"`
 	TransactionId string      `json:"transactionId,omitempty"`
 	Actor         interface{} `json:"actor,omitempty"`
+	Tenant        interface{} `json:"tenant,omitempty"`
 }
 
 type TriggerRecipientsTypeArray interface {
@@ -115,6 +116,7 @@ type EventRequest struct {
 	Overrides     interface{} `json:"overrides,omitempty"`
 	TransactionId string      `json:"transactionId,omitempty"`
 	Actor         interface{} `json:"actor,omitempty"`
+	Tenant        interface{} `json:"tenant,omitempty"`
 }
 
 type MessagesQueryParams struct {
@@ -555,9 +557,23 @@ type ChangesApplyResponse struct {
 	Data []ChangesGetResponseData `json:"data,omitempty"`
 }
 
-
 type UpdateTenantRequest struct {
-	Name 	 string `json:"name"`
-	Data 	 map[string]interface{} `json:"data"`
-	Identifier string `json:"identifier"`
+	Name       string                 `json:"name"`
+	Data       map[string]interface{} `json:"data"`
+	Identifier string                 `json:"identifier"`
+}
+
+type EnvironmentResponse struct {
+	Id             string `json:"_id,omitempty"`
+	Name           string `json:"name,omitempty"`
+	OrganizationId string `json:"_organizationId,omitempty"`
+	Identifier     string `json:"identifier,omitempty"`
+	ApiKeys        []struct {
+		Key    string `json:"key,omitempty"`
+		UserId string `json:"_userId,omitempty"`
+	} `json:"apiKeys,omitempty"`
+	ParentId string `json:"_parentId,omitempty"`
+}
+type EnvironmentsResponse struct {
+	Data []EnvironmentResponse `json:"data"`
 }
