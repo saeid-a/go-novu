@@ -45,8 +45,8 @@ func (t *WorkflowService) Create(ctx context.Context, workflow CreateWorkflowReq
 	return nil
 }
 
-func (t *WorkflowService) List(ctx context.Context, options *ListWorkflowsOptions) (*ListTopicsResponse, error) {
-	var resp ListTopicsResponse
+func (t *WorkflowService) List(ctx context.Context, options *ListWorkflowsOptions) (*ListWorkflowsResponse, error) {
+	var resp ListWorkflowsResponse
 	URL := t.client.config.BackendURL.JoinPath("workflows")
 
 	if options == nil {
