@@ -112,6 +112,7 @@ func NewAPIClient(apiKey string, cfg *Config) *APIClient {
 	c.InboundParserApi = (*InboundParserService)(&c.common)
 	c.LayoutApi = (*LayoutService)(&c.common)
 	c.TenantApi = (*TenantService)(&c.common)
+	c.WorkflowApi = (*WorkflowService)(&c.common)
 	return c
 }
 

@@ -10,7 +10,7 @@ import (
 )
 
 type IWorkflows interface {
-	List(ctx context.Context, options *ListTopicsOptions) (*ListTopicsResponse, error)
+	List(ctx context.Context, options *ListWorkflowsOptions) (*ListTopicsResponse, error)
 	Create(ctx context.Context, workflow CreateWorkflowRequest) error
 	Get(ctx context.Context, key string) (*GetWorkflowResponse, error)
 	Update(ctx context.Context, key string, workflow UpdateWorkflowRequest) error
@@ -45,12 +45,12 @@ func (t *WorkflowService) Create(ctx context.Context, workflow CreateWorkflowReq
 	return nil
 }
 
-func (t *WorkflowService) List(ctx context.Context, options *ListTopicsOptions) (*ListTopicsResponse, error) {
+func (t *WorkflowService) List(ctx context.Context, options *ListWorkflowsOptions) (*ListTopicsResponse, error) {
 	var resp ListTopicsResponse
 	URL := t.client.config.BackendURL.JoinPath("topics")
 
 	if options == nil {
-		options = &ListTopicsOptions{}
+		options = &ListWorkflowsOptions{}
 	}
 	queryParams, _ := json.Marshal(options)
 
