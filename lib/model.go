@@ -266,6 +266,12 @@ type UpdateWorkflowRequest struct {
 	Data                *interface{}  `json:"data,omitempty"`
 }
 
+type ListWorkflowsOptions struct {
+	Page     *int    `json:"page,omitempty"`
+	PageSize *int    `json:"pageSize,omitempty"`
+	Query    *string `json:"query,omitempty"`
+}
+
 type CheckTopicSubscriberResponse struct {
 	OrganizationId       string `json:"_organizationId"`
 	EnvironmentId        string `json:"_environmentId"`
