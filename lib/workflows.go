@@ -10,7 +10,7 @@ import (
 )
 
 type IWorkflows interface {
-	List(ctx context.Context, options *ListTopicsOptions) (*ListTopicsResponse, error)
+	List(ctx context.Context, options *ListWorkflowsOptions) (*ListTopicsResponse, error)
 	Create(ctx context.Context, workflow CreateWorkflowRequest) error
 	Get(ctx context.Context, key string) (*GetWorkflowResponse, error)
 	Update(ctx context.Context, key string, workflow UpdateWorkflowRequest) error
@@ -22,7 +22,7 @@ type WorkflowService service
 
 func (t *WorkflowService) Create(ctx context.Context, workflow CreateWorkflowRequest) error {
 	var resp interface{}
-	URL := t.client.config.BackendURL.JoinPath("topics")
+	URL := t.client.config.BackendURL.JoinPath("workflows")
 
 	reqBody := workflow
 
@@ -45,12 +45,12 @@ func (t *WorkflowService) Create(ctx context.Context, workflow CreateWorkflowReq
 	return nil
 }
 
-func (t *WorkflowService) List(ctx context.Context, options *ListTopicsOptions) (*ListTopicsResponse, error) {
+func (t *WorkflowService) List(ctx context.Context, options *ListWorkflowsOptions) (*ListTopicsResponse, error) {
 	var resp ListTopicsResponse
-	URL := t.client.config.BackendURL.JoinPath("topics")
+	URL := t.client.config.BackendURL.JoinPath("workflows")
 
 	if options == nil {
-		options = &ListTopicsOptions{}
+		options = &ListWorkflowsOptions{}
 	}
 	queryParams, _ := json.Marshal(options)
 
@@ -103,7 +103,7 @@ func (t *WorkflowService) Update(ctx context.Context, key string, workflow Updat
 }
 
 func (t *WorkflowService) UpdateStatus(ctx context.Context, key string, subscribers []string) error {
-	URL := t.client.config.BackendURL.JoinPath("topics", key, "subscribers/removal")
+	URL := t.client.config.BackendURL.JoinPath("workflows", key, "status")
 
 	queryParams, _ := json.Marshal(SubscribersTopicRequest{
 		Subscribers: subscribers,
