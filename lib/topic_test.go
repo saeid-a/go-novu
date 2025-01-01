@@ -10,7 +10,7 @@ import (
 	"strings"
 	"testing"
 
-	"github.com/novuhq/go-novu/lib"
+	"github.com/saeid-a/go-novu/lib"
 	"github.com/stretchr/testify/require"
 
 	"github.com/stretchr/testify/assert"
@@ -99,7 +99,7 @@ func TestCheckTopicSubscriber_Success(t *testing.T) {
 		expectedSentMethod: http.MethodGet,
 		expectedSentBody:   map[string]string{},
 		responseStatusCode: http.StatusOK,
-		responseBody:       lib.CheckTopicSubscriberResponse{
+		responseBody: lib.CheckTopicSubscriberResponse{
 			ExternalSubscriberId: subscriber,
 		},
 	})
