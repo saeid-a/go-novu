@@ -208,6 +208,64 @@ type GetTopicResponse struct {
 	Subscribers    []string `json:"subscribers"`
 }
 
+type ListWorkflowsResponse struct {
+	Page       int                   `json:"name"`
+	PageSize   int                   `json:"pageSize"`
+	TotalCount int                   `json:"totalCount"`
+	Data       []GetWorkflowResponse `json:"data"`
+}
+
+type GetWorkflowResponse struct {
+	ID                        string        `json:"_id"`
+	PreferenceSettings        Channel       `json:"preferenceSettings"`
+	Name                      string        `json:"name"`
+	Active                    bool          `json:"active"`
+	Draft                     bool          `json:"draft"`
+	Description               string        `json:"description"`
+	Critical                  bool          `json:"critical"`
+	Tags                      []string      `json:"tags,omitempty"`
+	Steps                     []interface{} `json:"steps,omitempty"`
+	OrganizationID            string        `json:"_organizationId,omitempty"`
+	CreatorID                 string        `json:"_creatorId,omitempty"`
+	EnvironmentID             string        `json:"_environmentId,omitempty"`
+	Triggers                  []interface{} `json:"triggers,omitempty"`
+	NotificationGroupID       string        `json:"notificationGroupId"`
+	ParentID                  string        `json:"parentId,omitempty"`
+	Deleted                   bool          `json:"deleted"`
+	DeletedAt                 string        `json:"deletedAt"`
+	DeletedBy                 string        `json:"deletedBy"`
+	NotificationGroup         *interface{}  `json:"notificationGroup,omitempty"`
+	Data                      *interface{}  `json:"data,omitempty"`
+	WorkflowIntegrationStatus *interface{}  `json:"workflowIntegrationStatus,omitempty"`
+}
+
+type CreateWorkflowRequest struct {
+	Name                string       `json:"name"`
+	NotificationGroupID string       `json:"notificationGroupId"`
+	NotificationGroup   *interface{} `json:"notificationGroup,omitempty"`
+	Tags                []string     `json:"tags,omitempty"`
+	Description         *string      `json:"description,omitempty"`
+	Active              *bool        `json:"active,omitempty"`
+	Critical            *bool        `json:"critical,omitempty"`
+	BlueprintId         *string      `json:"blueprintId,omitempty"`
+	Data                *interface{} `json:"data,omitempty"`
+}
+
+type UpdateWorkflowStatusRequest struct {
+	Active bool `json:"active"`
+}
+type UpdateWorkflowRequest struct {
+	Name                string        `json:"name"`
+	Tags                []string      `json:"tags,omitempty"`
+	Description         *string       `json:"description,omitempty"`
+	Identifier          *string       `json:"identifier,omitempty"`
+	Steps               []interface{} `json:"steps,omitempty"`
+	NotificationGroupID string        `json:"notificationGroupId"`
+	Critical            *bool         `json:"critical,omitempty"`
+	PreferenceSettings  *Channel      `json:"preferenceSettings,omitempty"`
+	Data                *interface{}  `json:"data,omitempty"`
+}
+
 type CheckTopicSubscriberResponse struct {
 	OrganizationId       string `json:"_organizationId"`
 	EnvironmentId        string `json:"_environmentId"`
