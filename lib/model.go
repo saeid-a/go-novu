@@ -53,6 +53,7 @@ type ITriggerPayloadOptions struct {
 	Overrides     interface{} `json:"overrides,omitempty"`
 	TransactionId string      `json:"transactionId,omitempty"`
 	Actor         interface{} `json:"actor,omitempty"`
+	Tenant        interface{} `json:"tenant,omitempty"`
 }
 
 type TriggerRecipientsTypeArray interface {
@@ -115,6 +116,7 @@ type EventRequest struct {
 	Overrides     interface{} `json:"overrides,omitempty"`
 	TransactionId string      `json:"transactionId,omitempty"`
 	Actor         interface{} `json:"actor,omitempty"`
+	Tenant        interface{} `json:"tenant,omitempty"`
 }
 
 type MessagesQueryParams struct {
@@ -204,6 +206,70 @@ type GetTopicResponse struct {
 	Key            string   `json:"key"`
 	Name           string   `json:"name"`
 	Subscribers    []string `json:"subscribers"`
+}
+
+type ListWorkflowsResponse struct {
+	Page       int                   `json:"name"`
+	PageSize   int                   `json:"pageSize"`
+	TotalCount int                   `json:"totalCount"`
+	Data       []GetWorkflowResponse `json:"data"`
+}
+
+type GetWorkflowResponse struct {
+	ID                        string        `json:"_id"`
+	PreferenceSettings        Channel       `json:"preferenceSettings"`
+	Name                      string        `json:"name"`
+	Active                    bool          `json:"active"`
+	Draft                     bool          `json:"draft"`
+	Description               string        `json:"description"`
+	Critical                  bool          `json:"critical"`
+	Tags                      []string      `json:"tags,omitempty"`
+	Steps                     []interface{} `json:"steps,omitempty"`
+	OrganizationID            string        `json:"_organizationId,omitempty"`
+	CreatorID                 string        `json:"_creatorId,omitempty"`
+	EnvironmentID             string        `json:"_environmentId,omitempty"`
+	Triggers                  []interface{} `json:"triggers,omitempty"`
+	NotificationGroupID       string        `json:"notificationGroupId"`
+	ParentID                  string        `json:"parentId,omitempty"`
+	Deleted                   bool          `json:"deleted"`
+	DeletedAt                 string        `json:"deletedAt"`
+	DeletedBy                 string        `json:"deletedBy"`
+	NotificationGroup         *interface{}  `json:"notificationGroup,omitempty"`
+	Data                      *interface{}  `json:"data,omitempty"`
+	WorkflowIntegrationStatus *interface{}  `json:"workflowIntegrationStatus,omitempty"`
+}
+
+type CreateWorkflowRequest struct {
+	Name                string       `json:"name"`
+	NotificationGroupID string       `json:"notificationGroupId"`
+	NotificationGroup   *interface{} `json:"notificationGroup,omitempty"`
+	Tags                []string     `json:"tags,omitempty"`
+	Description         *string      `json:"description,omitempty"`
+	Active              *bool        `json:"active,omitempty"`
+	Critical            *bool        `json:"critical,omitempty"`
+	BlueprintId         *string      `json:"blueprintId,omitempty"`
+	Data                *interface{} `json:"data,omitempty"`
+}
+
+type UpdateWorkflowStatusRequest struct {
+	Active bool `json:"active"`
+}
+type UpdateWorkflowRequest struct {
+	Name                string        `json:"name"`
+	Tags                []string      `json:"tags,omitempty"`
+	Description         *string       `json:"description,omitempty"`
+	Identifier          *string       `json:"identifier,omitempty"`
+	Steps               []interface{} `json:"steps,omitempty"`
+	NotificationGroupID string        `json:"notificationGroupId"`
+	Critical            *bool         `json:"critical,omitempty"`
+	PreferenceSettings  *Channel      `json:"preferenceSettings,omitempty"`
+	Data                *interface{}  `json:"data,omitempty"`
+}
+
+type ListWorkflowsOptions struct {
+	Page     *int    `json:"page,omitempty"`
+	PageSize *int    `json:"pageSize,omitempty"`
+	Query    *string `json:"query,omitempty"`
 }
 
 type CheckTopicSubscriberResponse struct {
@@ -555,9 +621,23 @@ type ChangesApplyResponse struct {
 	Data []ChangesGetResponseData `json:"data,omitempty"`
 }
 
-
 type UpdateTenantRequest struct {
-	Name 	 string `json:"name"`
-	Data 	 map[string]interface{} `json:"data"`
-	Identifier string `json:"identifier"`
+	Name       string                 `json:"name"`
+	Data       map[string]interface{} `json:"data"`
+	Identifier string                 `json:"identifier"`
+}
+
+type EnvironmentResponse struct {
+	Id             string `json:"_id,omitempty"`
+	Name           string `json:"name,omitempty"`
+	OrganizationId string `json:"_organizationId,omitempty"`
+	Identifier     string `json:"identifier,omitempty"`
+	ApiKeys        []struct {
+		Key    string `json:"key,omitempty"`
+		UserId string `json:"_userId,omitempty"`
+	} `json:"apiKeys,omitempty"`
+	ParentId string `json:"_parentId,omitempty"`
+}
+type EnvironmentsResponse struct {
+	Data []EnvironmentResponse `json:"data"`
 }
